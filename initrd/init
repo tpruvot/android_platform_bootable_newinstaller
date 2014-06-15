@@ -85,7 +85,9 @@ check_root()
 		mount -o loop /mnt/$SRC/system.sfs /sfs
 		mount -o loop /sfs/system.img system
 	elif [ -e /mnt/$SRC/system.img ]; then
+		remount_rw
 		mount -o loop /mnt/$SRC/system.img system
+		busybox mount -o remount,ro system
 	elif [ -d /mnt/$SRC/system ]; then
 		remount_rw
 		mount --bind /mnt/$SRC/system system
